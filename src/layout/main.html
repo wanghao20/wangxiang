@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <!-- head 中 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        .form-check{
+            width: 30%;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container" style="margin-top: 32px;">
+    <form>
+        <div class="mb-3">
+           <h4 class="mb-3">激活码</h4>
+            <input type="text" class="form-control" id="key" aria-describedby="key">
+            <div  class="form-text">脚本自动适配分辨率2280*1280</div>
+<!--            <div  class="form-text">第一次使用默认获取一天使用时长.全分辨率如果可用可在...购买卡密</div>-->
+            <div  class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <h4 class="mb-3">功能模块</h4>
+            <div class="input-group mb-3">
+                <div class="form-check" >
+                    <input id="credit" name="mod" type="radio" class="form-check-input" value="0"disabled required>
+                    <label class="form-check-label" for="credit">采集</label>
+                </div>
+                <div class="form-check">
+                    <input id="debit" name="mod" type="radio" class="form-check-input"value="1"  required>
+                    <label class="form-check-label" for="debit">钓鱼</label>
+                </div>
+                <div class="form-check">
+                    <input id="shoulie" name="mod" type="radio" class="form-check-input" value="2" disabled required>
+                    <label class="form-check-label" for="paypal">狩猎</label>
+                </div>
+                <div class="form-check">
+                    <input id="paypal" name="mod" type="radio" class="form-check-input"  value="3" disabled required>
+                    <label class="form-check-label" for="paypal">辅助采集</label>
+                </div>
+                <div class="form-check">
+                    <input id="paypa2" name="mod" type="radio" class="form-check-input" disabled required>
+                    <label class="form-check-label" for="paypal">孵蛋</label>
+                </div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <h4 class="mb-3">功能设置</h4>
+<!--            上面选择的功能下面自动显示对应设置-->
+            <div class="card">
+                <div class="card-header">
+                    采集设置
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <div class="mb-3">
+                            <lable class="mb-3">采集物品</lable>
+                            <div class="input-group mb-3">
+                                <div class="form-check" >
+                                    <input name="paymentMethod" type="radio" class="form-check-input" value="0"  required>
+                                    <label class="form-check-label" for="credit">苍玉</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input" value="1"  required>
+                                    <label class="form-check-label" for="debit">瑶玉</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input" value="2"  required>
+                                    <label class="form-check-label" for="debit">玄玉</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input" value="3"  required>
+                                    <label class="form-check-label" for="debit">璇玉</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input" value="4" required>
+                                    <label class="form-check-label" for="debit">珚玉</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="5" required>
+                                    <label class="form-check-label" for="debit">瑾瑜玉</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="6"  required>
+                                    <label class="form-check-label" for="debit">荒石</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="7"   required>
+                                    <label class="form-check-label" for="paypal">铁</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="8"  required>
+                                    <label class="form-check-label" for="paypal">铜</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="9"   required>
+                                    <label class="form-check-label" for="paypal">银</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="10"  required>
+                                    <label class="form-check-label" for="debit">冰</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="15"  required>
+                                    <label class="form-check-label" for="debit">苹果</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="16"  required>
+                                    <label class="form-check-label" for="debit">辣椒</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="11"  required>
+                                    <label class="form-check-label" for="debit">莽草</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="12"  required>
+                                    <label class="form-check-label" for="debit">古椰果</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="13" required>
+                                    <label class="form-check-label" for="debit">龙骨草</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"value="14" required>
+                                    <label class="form-check-label" for="debit">枇华草</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"disabled required>
+                                    <label class="form-check-label" for="debit">嘉荣草</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"disabled required>
+                                    <label class="form-check-label" for="debit">灵芝</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"disabled required>
+                                    <label class="form-check-label" for="debit">山蒜草</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"disabled required>
+                                    <label class="form-check-label" for="debit">薝棘</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"disabled required>
+                                    <label class="form-check-label" for="debit">秦椒</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="paymentMethod" type="radio" class="form-check-input"disabled required>
+                                    <label class="form-check-label" for="debit">薏苡</label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <lable class="mb-3">死亡返回</lable>
+                            <div class="input-group mb-3">
+                                <div class="form-check">
+                                    <input  name="returnInit" type="radio" class="form-check-input" value="0" required>
+                                    <label class="form-check-label" for="paypal">家园</label>
+                                </div>
+                                <div class="form-check">
+                                    <input  name="returnInit" type="radio" class="form-check-input"value="1" required>
+                                    <label class="form-check-label" for="paypal">天枢</label>
+                                </div>
+                            </div>
+                        </div>
+                    </blockquote>
+                </div>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+<h4 style="color: #ff2e2a">启动脚本前请关闭日志窗口!</h4>
+<h4 style="color: #ff2e2a">启动脚本前在左边滑动菜单设置中开启无障碍模式在主页右下角点击启动!</h4>
+<h4 style="color: #ff2e2a">音量上键可停止脚本运行!</h4>
+<h4 style="color: #ff2e2a">脚本启动后全自动操作包含登录, 不需要辅助操作,</h4>
+
+<!-- Bootstrap core CSS -->
+<!-- body 最后 -->
+<script src="htmljs/jquery.min.js"></script>
+<script src="htmljs/materialize.min.js"></script>
+<script src="htmljs/bootstrap.bundle.min.js"></script>
+<style rel="stylesheet" src="css/materialize.min.css"></style>
+<!--<style rel="stylesheet" src="css/bootstrap.min.css" > </style>-->
+
+
+</body>
+
+
+<script>
+    $(function () {
+        // 系统保存数据用main.js调用
+        window.data = {
+            set: function (key, value, object = false) {
+                window.ec.saveConfig(key, object ? JSON.stringify(value) : value);
+            },
+            get: function (key, object = false) {
+                if (!window.ec.getConfig(key)) {
+                    if (object) {
+                        return []
+                    }
+                    return ""
+                }
+                return object ? JSON.parse(window.ec.getConfig(key)) : window.ec.getConfig(key);
+            },
+            put: function (key, value) {
+                var temp = this.get(key, true);
+                temp === null ? temp = [value] : temp.push(value);
+                this.set(key, temp, true);
+            },
+            remove: function (key, index) {
+                var temp = this.get(key, true);
+                if (temp !== null && typeof temp == 'object') {
+                    temp.splice(index, 1);
+                }
+                this.set(key, temp, true);
+            }
+        };
+        // 绑定方法  0 :家园 1天枢
+        $(':radio[name="returnInit"]').eq(data.get("returnInit")).attr("checked",true)
+        $(':radio[name="returnInit"]').bind("input propertychange", function() {
+            data.set("returnInit", $(':radio[name="returnInit"]:checked').val());
+        });
+        // 采集物资
+        $(':radio[name="paymentMethod"]').eq(data.get("goods")).attr("checked",true)
+        $(':radio[name="paymentMethod"]').bind("input propertychange", function() {
+            data.set("goods", $(':radio[name="paymentMethod"]:checked').val());
+        });
+        // 功能
+        $(':radio[name="mod"]').eq(data.get("mod")).attr("checked",true)
+        $(':radio[name="mod"]').bind("input propertychange", function() {
+            data.set("mod", $(':radio[name="mod"]:checked').val());
+        });
+        // 密钥
+        $("#key").val(data.get("key"));
+        $("#key").bind("input propertychange", function() {
+            data.set("key", $("#key").val());
+        });
+
+        // 设置默认值 自动请求获取免费试用时间
+        if(!data.get("key")){
+            $.get("http://82.156.63.20:9092/game/getkey",function(dataObj,status){
+                if(dataObj.code==200){
+                    $("#key").val(dataObj.data);
+                    data.set("key", dataObj.data);
+                }
+            });
+        }
+        if (!data.get("mod")) {
+            $(':radio[name="mod"]').eq(0).attr("checked",true)
+        }
+        if (!data.get("returnInit")) {
+            $(':radio[name="returnInit"]').eq(1).attr("checked",true)
+        }
+        if (!data.get("goods")) {
+            $(':radio[name="paymentMethod"]').eq(0).attr("checked",true)
+        }
+
+    })
+
+</script>
+</html>

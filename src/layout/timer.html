@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- head 中 -->
+        <link rel="stylesheet" href="css/materialize.min.css">
+
+
+        <title>H5 网页示例</title>
+    </head>
+    <body>
+
+
+        <div class="card-panel" style="margin-left: 10px;margin-right: 10px">
+            <span class="blue-text text-darken-2">定时任务演示 - 日期定时</span>
+
+            <div class="row">
+                <div class="input-field col s4">
+                    <label>执行时间:</label>
+                </div>
+                <div class="input-field col s5">
+                    <input type="text" class="datepicker" id="task1_date">
+                    <label>日期</label>
+                </div>
+                <div class="input-field col s3">
+                    <input type="text" class="timepicker" id="task1_time">
+                    <label>时间</label>
+                </div>
+            </div>
+            <label style="margin-left: 10px">
+                <input type="checkbox" class="filled-in" id="task1_cancel_before" checked/>
+                <span>执行时先取消正在运行的任务</span>
+            </label>
+            <div style="margin-top: 20px ;margin-left: 10px">
+                <a class="waves-effect waves-light btn" onclick="startTimer(1)">开启定时</a>
+            </div>
+        </div>
+
+
+        <div class="card-panel" style="margin-left: 10px;margin-right: 10px">
+            <span class="blue-text text-darken-2">定时任务演示 - 间隔定时</span>
+            <div class="row">
+                <div class="input-field col s6">
+                    <label>多少分钟后执行</label>
+                </div>
+                <div class="input-field col s6">
+                    <input type="number" class="validate" id="task2_time">
+                    <label for="task2_time">分钟</label>
+                </div>
+            </div>
+            <label style="margin-left: 10px">
+                <input type="checkbox" class="filled-in" id="task2_cancel_before" checked/>
+                <span>执行时先取消正在运行的任务</span>
+            </label>
+            <div style="margin-top: 20px ;margin-left: 10px">
+                <a class="waves-effect waves-light btn" onclick="startTimer(2)">开启定时</a>
+            </div>
+        </div>
+        <!-- body 最后 -->
+        <script src="htmljs/jquery.min.js"></script>
+        <script src="htmljs/materialize.min.js"></script>
+
+
+    </body>
+    <script>
+        $(function () {
+            $('.datepicker').datepicker();
+            $('.timepicker').timepicker({"twelveHour": false});
+            //还原历史记录
+            //设置第一个任务
+            var type = 1;
+            $("#task" + type + "_time").val(window.ec.getConfig("task" + type + "_time"));
+            $("#task" + type + "_date").val(window.ec.getConfig("task" + type + "_date"));
+            $("#task" + type + "_cancel_before").attr("checked", window.ec.getConfig("task" + type + "_cancel_before"));
+            var c = window.ec.getConfig("task" + type + "_cancel_before");
+            if (c === "true") {
+                $("#task" + type + "_cancel_before").attr("checked", true);
+            } else {
+                $("#task" + type + "_cancel_before").attr("checked", false);
+            }
+            //设置第二个任务
+            type = 2;
+            $("#task" + type + "_time").val(window.ec.getConfig("task" + type + "_time"));
+            c = window.ec.getConfig("task" + type + "_cancel_before");
+            if (c === "true") {
+                $("#task" + type + "_cancel_before").attr("checked", true);
+            } else {
+                $("#task" + type + "_cancel_before").attr("checked", false);
+            }
+
+        });
+
+        function startTimer(type) {
+            window.ec.showLogWindow();
+            var time = $("#task" + type + "_time").val();
+            var cancel_before = $("#task" + type + "_cancel_before").prop("checked");
+            var date = $("#task" + type + "_date").val();
+            if (time == null || time == '') {
+                M.toast({html: '没填写时间'});
+                return;
+            }
+            if (type == 1) {
+                if (date == null || date == '') {
+                    M.toast({html: '没填写日期'});
+                    return;
+                }
+            }
+            //保存历史记录
+            window.ec.saveConfig("task" + type + "_time", time);
+            window.ec.saveConfig("task" + type + "_date", date);
+            window.ec.saveConfig("task" + type + "_cancel_before", cancel_before);
+
+            //这个tag在脚本里面可以使用readConfigString("jobTaskTag")读取到，可以知晓从个任务过来的
+            var taskTag = "task" + type;
+            var after = null;
+            if (type == 1) {
+                after = (date + " " + time);
+                window.ec.logd("任务" + taskTag + "定时: " + after);
+            } else {
+                //转换成秒
+                after = time * 60;
+                window.ec.logd("任务" + taskTag + "定时: " + (time) + "分钟后");
+            }
+            var jobid = window.ec.startJob(taskTag, after, cancel_before);
+            if (jobid > 0) {
+                window.ec.logd("创建任务成功，ID：" + jobid);
+                M.toast({html: '创建定时任务成功' + taskTag});
+            } else {
+                window.ec.logd("创建任务失败，ID：" + jobid);
+                M.toast({html: '创建定时任务失败' + taskTag});
+            }
+
+
+        }
+    </script>
+
+</html>

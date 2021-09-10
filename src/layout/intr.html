@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- head 中 -->
+    <link rel="stylesheet" href="css/materialize.min.css">
+
+
+    <title>H5 网页示例</title>
+</head>
+<body style="padding: 20px">
+
+<div class="card-panel">
+    <span class="blue-text text-darken-2" id="service">运行模式</span>
+</div>
+
+
+<div class="ui-form-item ui-form-item-switch ui-border-b">
+    <p>
+        服务状态
+    </p>
+    <div class="switch">
+        <label>
+            关闭
+            <input type="checkbox" id="serviceOk">
+            <span class="lever"></span>
+            开启
+        </label>
+    </div>
+</div>
+<br/>
+
+<div class="" style="padding: 5px">
+    <a class="waves-effect waves-light btn" onclick="openEnv()">启动环境</a>
+
+</div>
+
+
+<div class="switch">
+    <p>
+        悬浮窗权限
+    </p>
+    <label>
+        关闭
+        <input type="checkbox" id="floatView">
+        <span class="lever"></span>
+        开启
+    </label>
+</div>
+<br/>
+<div class="" style="padding: 5px">
+    <a class="waves-effect waves-light btn" onclick="floatViewPermission()">开启悬浮窗权限</a>
+
+</div>
+
+<!-- body 最后 -->
+<script src="htmljs/jquery.min.js"></script>
+<script src="htmljs/materialize.min.js"></script>
+
+
+</body>
+
+
+<script>
+    $(function () {
+        var serviceMode = window.ec.isAccMode() ? "无障碍服务" : "代理服务";
+        $("#service").text("运行模式: " + serviceMode);
+
+        var serviceOk = false;
+        if (window.ec.isAccMode()) {
+            serviceOk = window.ec.isAccServiceOk();
+        } else {
+            serviceOk = window.ec.isAgentServiceOk();
+        }
+        if (serviceOk) {
+            $("#serviceOk").prop("checked", true);
+        } else {
+            $("#serviceOk").prop("checked", false);
+        }
+
+
+        var r2 = window.ec.hasFloatViewPermission();
+        $("#floatView").prop("checked", r2);
+
+
+    });
+
+    function openEnv() {
+        var r = window.ec.startEnv();
+        $("#serviceOk").prop("checked", r);
+    }
+
+    function floatViewPermission() {
+        var r = window.ec.requestFloatViewPermission(10);
+        $("#floatView").prop("checked", r);
+        window.ec.toast("开启选浮窗权限:" + r);
+    }
+</script>
+
+</html>

@@ -1,0 +1,175 @@
+
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <!-- head 中 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        .inputC {
+            width: 10%;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container" style="margin-top: 32px;">
+    <form>
+<!--        <div class="mb-3">-->
+<!--            <h4 class="mb-3">运行设置</h4>-->
+<!--            <lable class="mb-3">开始时间:</lable>-->
+<!--            <input type="number" class="form-control" id="startTime" aria-describedby="startTime">-->
+<!--            <lable class="mb-3">结束时间:</lable>-->
+<!--            <input type="number" class="form-control" id="endTime" aria-describedby="endTime">-->
+<!--            <lable>最低运行电量(%):</lable>-->
+<!--            <input type="number" class="form-control" id="endQe" aria-describedby="endQe">-->
+<!--            <lable>达到后继续运行(%):</lable>-->
+<!--            <input type="number" class="form-control" id="startQe" aria-describedby="startQe">-->
+<!--        </div>-->
+        <div class="mb-3">
+            <h4 class="mb-3">检测设置</h4>
+            <div class="input-group mb-3">
+                连续<input  type="number"class="inputC" id="discernMax">次未识别到物品,开始重新检测页面(不填写随机8-10次)
+            </div>
+            <div class="input-group mb-3">
+                检测到未知页面<input  type="number"class="inputC" id="noteMax">次,重新打开游戏(不填写随机10-15次)
+            </div>
+            <div class="input-group mb-3">
+                检测页面成功<input  type="number"class="inputC" id="pageTestMax">次,但是都未采集成功,重新打开游戏(不填写随机9-12次)
+            </div>
+            <div class="input-group mb-3">
+                连续移动<input  type="number"class="inputC" id="failNumMax">次未采集成功,返回天枢/家园(不填写随机25-40次)
+            </div>
+            <div class="input-group mb-3">
+                采集成功<input  type="number"class="inputC" id="successNumMAx">次吃东西(不填写随机4-6次)
+            </div>
+            <div class="input-group mb-3">
+                搜索到物品时未识别到距离向物品移动<input  type="number"class="inputC" id="moveTime">秒(不填写随机2-4秒)
+            </div>
+        </div>
+    </form>
+
+</div>
+
+<h4 style="color: #ff2e2a">开始时间填写示例 0 结束时间填写 6,表示从凌晨00:00开始运行,到06:00结束运行(24小时制)!</h4>
+
+<!-- Bootstrap core CSS -->
+<!-- body 最后 -->
+<script src="htmljs/jquery.min.js"></script>
+<script src="htmljs/materialize.min.js"></script>
+<script src="htmljs/bootstrap.bundle.min.js"></script>
+<style rel="stylesheet" src="css/materialize.min.css"></style>
+<!--<style rel="stylesheet" src="css/bootstrap.min.css" > </style>-->
+
+
+</body>
+
+
+
+<script>
+    $(function () {
+        window.data = {
+            set: function (key, value, object = false) {
+                window.ec.saveConfig(key, object ? JSON.stringify(value) : value);
+            },
+            get: function (key, object = false) {
+                if (!window.ec.getConfig(key)) {
+                    if (object) {
+                        return []
+                    }
+                    return ""
+                }
+                return object ? JSON.parse(window.ec.getConfig(key)) : window.ec.getConfig(key);
+            },
+            put: function (key, value) {
+                var temp = this.get(key, true);
+                temp === null ? temp = [value] : temp.push(value);
+                this.set(key, temp, true);
+            },
+            remove: function (key, index) {
+                var temp = this.get(key, true);
+                if (temp !== null && typeof temp == 'object') {
+                    temp.splice(index, 1);
+                }
+                this.set(key, temp, true);
+            }
+        };
+        // 绑定事件
+        $("#startQe").val(data.get("startQe"));
+        $("#startQe").bind("input propertychange", function() {
+            data.set("startQe", $("#startQe").val());
+        });
+        $("#endQe").val(data.get("endQe"));
+        $("#endQe").bind("input propertychange", function() {
+            data.set("endQe", $("#endQe").val());
+        });
+        $("#startTime").val(data.get("startTime"));
+        $("#startTime").bind("input propertychange", function() {
+            data.set("startTime", $("#startTime").val());
+        });
+        $("#endTime").val(data.get("endTime"));
+        $("#endTime").bind("input propertychange", function() {
+            data.set("endTime", $("#endTime").val());
+        });
+        $("#noteMax").val(data.get("noteMax"));
+        $("#noteMax").bind("input propertychange", function() {
+            data.set("noteMax", $("#noteMax").val());
+        });
+        $("#pageTestMax").val(data.get("pageTestMax"));
+        $("#pageTestMax").bind("input propertychange", function() {
+            data.set("pageTestMax", $("#pageTestMax").val());
+        });
+        $("#discernMax").val(data.get("discernMax"));
+        $("#discernMax").bind("input propertychange", function() {
+            data.set("discernMax", $("#discernMax").val());
+        });
+        $("#failNumMax").val(data.get("failNumMax"));
+        $("#failNumMax").bind("input propertychange", function() {
+            data.set("failNumMax", $("#failNumMax").val());
+        });
+        $("#successNumMAx").val(data.get("successNumMAx"));
+        $("#successNumMAx").bind("input propertychange", function() {
+            data.set("successNumMAx", $("#successNumMAx").val());
+        });
+        $("#moveTime").val(data.get("moveTime"));
+        $("#moveTime").bind("input propertychange", function() {
+            data.set("moveTime", $("#moveTime").val());
+        });
+        // 设置默认值
+        if(!data.get("startQe")){
+            $("#startQe").val(50);
+        }
+        if(!data.get("endQe")){
+            $("#endQe").val(10);
+        }
+        if(!data.get("startTime")){
+            $("#startTime").val(0);
+        }
+        if(!data.get("endTime")){
+            $("#endTime").val(6);
+        }
+
+    })
+
+</script>
+</html>
